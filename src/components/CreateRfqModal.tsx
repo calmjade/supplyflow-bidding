@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Plus, Trash2, X, Calculator, AlertCircle } from 'lucide-react';
-import { CATEGORIES, formatCNY } from '@/lib/format';
+import { API_BASE, CATEGORIES, formatCNY } from '@/lib/format';
 import type { RfqLineItem, RfqProject } from '@/types';
 
 interface CreateRfqModalProps {
@@ -97,7 +97,7 @@ export function CreateRfqModal({ open, onClose, onCreated }: CreateRfqModalProps
     setSubmitting(true);
     try {
       const isoDeadline = new Date(deadline).toISOString();
-      const res = await fetch('/api/rfqs', {
+      const res = await fetch(`${API_BASE}/rfqs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

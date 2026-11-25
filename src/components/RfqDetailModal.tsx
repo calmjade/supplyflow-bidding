@@ -15,6 +15,7 @@ import {
   X,
 } from 'lucide-react';
 import {
+  API_BASE,
   STATUS_META,
   formatCNY,
   formatCNYExact,
@@ -67,7 +68,7 @@ export function RfqDetailModal({
     setAwardError(null);
     setBidError(null);
     try {
-      const res = await fetch(`/api/rfqs/${encodeURIComponent(rfqId)}`, {
+      const res = await fetch(`${API_BASE}/rfqs/${encodeURIComponent(rfqId)}`, {
         cache: 'no-store',
       });
       const data = (await res.json()) as RfqDetailResponse & { error?: string };
@@ -154,7 +155,7 @@ export function RfqDetailModal({
 
     setSubmittingBid(true);
     try {
-      const res = await fetch(`/api/rfqs/${encodeURIComponent(rfq.id)}/bids`, {
+      const res = await fetch(`${API_BASE}/rfqs/${encodeURIComponent(rfq.id)}/bids`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -191,7 +192,7 @@ export function RfqDetailModal({
     setAwarding(true);
     setAwardError(null);
     try {
-      const res = await fetch(`/api/rfqs/${encodeURIComponent(rfq.id)}/award`, {
+      const res = await fetch(`${API_BASE}/rfqs/${encodeURIComponent(rfq.id)}/award`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bidId: bid.id }),

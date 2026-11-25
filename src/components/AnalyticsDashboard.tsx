@@ -12,7 +12,7 @@ import {
   Users,
   Wallet,
 } from 'lucide-react';
-import { formatCNY } from '@/lib/format';
+import { API_BASE, formatCNY } from '@/lib/format';
 import type { AnalyticsData } from '@/types';
 
 interface AnalyticsDashboardProps {
@@ -28,7 +28,7 @@ export function AnalyticsDashboard({ refreshSignal }: AnalyticsDashboardProps) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/analytics', { cache: 'no-store' });
+      const res = await fetch(`${API_BASE}/analytics`, { cache: 'no-store' });
       if (!res.ok) throw new Error('加载降本分析数据失败');
       const payload = (await res.json()) as AnalyticsData;
       setData(payload);

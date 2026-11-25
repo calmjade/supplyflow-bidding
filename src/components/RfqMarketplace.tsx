@@ -14,6 +14,7 @@ import {
   TrendingDown,
 } from 'lucide-react';
 import {
+  API_BASE,
   CATEGORIES,
   STATUS_META,
   formatCNY,
@@ -58,7 +59,7 @@ export function RfqMarketplace({
       if (searchTerm.trim()) params.set('q', searchTerm.trim());
 
       const qs = params.toString();
-      const res = await fetch(`/api/rfqs${qs ? `?${qs}` : ''}`, {
+      const res = await fetch(`${API_BASE}/rfqs${qs ? `?${qs}` : ''}`, {
         cache: 'no-store',
       });
       if (!res.ok) throw new Error('加载招采需求列表失败');

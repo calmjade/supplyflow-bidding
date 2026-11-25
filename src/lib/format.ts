@@ -1,5 +1,7 @@
 import type { RfqStatus } from '@/types';
 
+export const API_BASE = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/api`;
+
 export function formatCNY(amount: number | null | undefined): string {
   if (amount == null || Number.isNaN(amount)) return '—';
   return new Intl.NumberFormat('zh-CN', {

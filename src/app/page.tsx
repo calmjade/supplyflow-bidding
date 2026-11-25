@@ -7,6 +7,7 @@ import { CreateRfqModal } from '@/components/CreateRfqModal';
 import { RfqDetailModal } from '@/components/RfqDetailModal';
 import { RfqMarketplace } from '@/components/RfqMarketplace';
 import { TopNav } from '@/components/TopNav';
+import { API_BASE } from '@/lib/format';
 import type { DemoRoleKey, RfqProject, SessionUser } from '@/types';
 
 const FALLBACK_USER: SessionUser = {
@@ -41,7 +42,7 @@ export default function HomePage() {
     let active = true;
     (async () => {
       try {
-        const res = await fetch('/api/auth/me', { cache: 'no-store' });
+        const res = await fetch(`${API_BASE}/auth/me`, { cache: 'no-store' });
         if (!res.ok) return;
         const data = (await res.json()) as { user?: SessionUser };
         if (active && data.user) {
@@ -60,7 +61,7 @@ export default function HomePage() {
     if (roleKey === user.key) return;
     setSwitchingRole(roleKey);
     try {
-      const res = await fetch('/api/auth/switch-role', {
+      const res = await fetch(`${API_BASE}/auth/switch-role`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ roleKey }),
