@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js build output
+.next/
+out/
+
+# Local SQLite database persistence
+data/*.sqlite
+data/*.sqlite-journal
+
+# Environment & IDE
+.env
+.env*.local
+.DS_Store
+*.log
